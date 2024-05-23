@@ -2,9 +2,10 @@ from contextlib import contextmanager
 import os
 import sys
 
+import numpy as np
+
 import torch
 import torch.nn.functional as F
-import torchvision.transforms as transforms
 
 from .zoedepth.models.builder import build_model as build_model_internal
 from .zoedepth.utils.config import get_config
@@ -61,7 +62,7 @@ def run_model(model, images, device=None):
     Runs metric depth anything model on given images.
 
     model: Metric depth anything model (preferably created with `build_model`)
-    images: Images to convert. Can be torch.Tensor (chw), or PIL.Image or np.ndarray (hwc)
+    images: Images to convert. Should be torch.Tensor (chw).
     device: Device to run on (defaults to device of model)
 
     @return: depths of given image(s), as torch.Tensor on `device` with shape (b, h, w)
@@ -70,9 +71,6 @@ def run_model(model, images, device=None):
         device = model.device
     else:
         model = model.to(device)
-
-    if type(images) != torch.Tensor:
-        images = transforms.ToTensor()(images)
 
     h, w = images.shape[-2:]
     images = images.float().to(device)
