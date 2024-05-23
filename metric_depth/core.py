@@ -52,7 +52,7 @@ def build_model(ckpt=None, device=None, suppress_outputs=True):
         with silence_output(maybe=suppress_outputs):
             config = get_config("zoedepth", "eval", "nyu")
             config.pretrained_resource = f"local::{ckpt}"
-            return build_model_internal(config).to(device).eval()
+            return build_model_internal(config).to(device).half().eval()
     except Exception:
         raise
 
@@ -73,7 +73,7 @@ def run_model(model, images, device=None):
         model = model.to(device)
 
     h, w = images.shape[-2:]
-    images = images.float().to(device)
+    images = images.half().to(device)
     if len(images.shape) == 3:
         images = images.unsqueeze(dim=0)
         drop_batch_dim = True
