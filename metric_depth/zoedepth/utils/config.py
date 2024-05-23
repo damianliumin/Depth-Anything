@@ -25,9 +25,9 @@
 import json
 import os
 
-from zoedepth.utils.easydict import EasyDict as edict
+from metric_depth.zoedepth.utils.easydict import EasyDict as edict
 
-from zoedepth.utils.arg_utils import infer_type
+from metric_depth.zoedepth.utils.arg_utils import infer_type
 import pathlib
 import platform
 

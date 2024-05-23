@@ -12,5 +12,5 @@ setup(
         "huggingface-hub"
     ],
     url="none",
-    packages=["depth_anything"],
+    packages=["depth_anything", "metric_depth"],
 )

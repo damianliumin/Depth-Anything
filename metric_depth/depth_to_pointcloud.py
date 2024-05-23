@@ -12,8 +12,8 @@ from PIL import Image
 import torchvision.transforms as transforms
 import open3d as o3d
 from tqdm import tqdm
-from zoedepth.models.builder import build_model
-from zoedepth.utils.config import get_config
+from metric_depth.zoedepth.models.builder import build_model
+from metric_depth.zoedepth.utils.config import get_config
 
 # Global settings
 FL = 715.0873

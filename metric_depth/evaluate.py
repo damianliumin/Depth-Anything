@@ -26,14 +26,14 @@ import argparse
 from pprint import pprint
 
 import torch
-from zoedepth.utils.easydict import EasyDict as edict
+from metric_depth.zoedepth.utils.easydict import EasyDict as edict
 from tqdm import tqdm
 
-from zoedepth.data.data_mono import DepthDataLoader
-from zoedepth.models.builder import build_model
-from zoedepth.utils.arg_utils import parse_unknown
-from zoedepth.utils.config import change_dataset, get_config, ALL_EVAL_DATASETS, ALL_INDOOR, ALL_OUTDOOR
-from zoedepth.utils.misc import (RunningAverageDict, colors, compute_metrics,
+from metric_depth.zoedepth.data.data_mono import DepthDataLoader
+from metric_depth.zoedepth.models.builder import build_model
+from metric_depth.zoedepth.utils.arg_utils import parse_unknown
+from metric_depth.zoedepth.utils.config import change_dataset, get_config, ALL_EVAL_DATASETS, ALL_INDOOR, ALL_OUTDOOR
+from metric_depth.zoedepth.utils.misc import (RunningAverageDict, colors, compute_metrics,
                         count_parameters)
 
 
@@ -85,7 +85,7 @@ def evaluate(model, test_loader, config, round_vals=True, round_precision=3):
             # print("Saving images ...")
             from PIL import Image
             import torchvision.transforms as transforms
-            from zoedepth.utils.misc import colorize
+            from metric_depth.zoedepth.utils.misc import colorize
 
             os.makedirs(config.save_images, exist_ok=True)
             # def save_image(img, path):

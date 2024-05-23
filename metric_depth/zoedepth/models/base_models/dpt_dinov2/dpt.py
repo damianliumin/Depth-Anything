@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
 
+import os
+
 from .blocks import FeatureFusionBlock, _make_scratch
 import torch.nn.functional as F
 
@@ -137,7 +139,8 @@ class DPT_DINOv2(nn.Module):
 
         torch.manual_seed(1)
         
-        self.pretrained = torch.hub.load('../torchhub/facebookresearch_dinov2_main', 'dinov2_{:}14'.format(encoder), source='local', pretrained=False)
+        dinov2_main_path = os.path.join(os.path.dirname(__file__), '../../../../..', 'torchhub/facebookresearch_dinov2_main')
+        self.pretrained = torch.hub.load(dinov2_main_path, 'dinov2_{:}14'.format(encoder), source='local', pretrained=False)
         
         dim = self.pretrained.blocks[0].attn.qkv.in_features
         
